@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Nav from './components/Nav';
 import { useState, useRef } from 'react'
 import Card from './components/Card'
+import CardImage from './components/CardImage';
 export default function Home() {
   const inputTitle = useRef();
   const inputContent = useRef();
@@ -14,8 +15,6 @@ export default function Home() {
     if (inputContent.current.values == '' || inputTitle.current.value == '') {
       console.log(inputContent.current.value.isEmpty)
       console.log(inputTitle.current.value.isEmpty)
-      console.log(inputTitle.current.value.isEmpty)
-
       return;
     }
     setTodo((prev) => [
@@ -32,17 +31,21 @@ export default function Home() {
   }
   return (
     <div className='container mx-auto my-1  text-center '>
-      <Nav />
+
       <form onSubmit={submitHandler} className='my-3'>
         <input ref={inputTitle} placeholder='write note title here ... ' className=' my-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' />
         <input type="textarea" ref={inputContent} placeholder='write note contant here ... ' className=' my-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' />
+        <input ref={inputContent} placeholder='put the image link here ... ' className=' my-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' />
         <button className=' dark:bg-gray-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' >Add</button>
       </form>
-      <div className=' grid grid-cols-4 gap-4rounded px-3 py-3' >
+      <div className=' grid grid-cols-2 gap-4 rounded px-3 py-3' >
 
         {
           todolist.map((item) => <Card data={item} key={item} />)
         }
+
+        <CardImage />
+        <CardImage />
       </div>
 
 
